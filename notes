@@ -1,0 +1,31 @@
+  /* function handleOnDragEnd(result) {
+    if (!result.destination) return;
+
+    const items = Array.from(characters);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    updateCharacters(items);
+  } */
+  
+; 1. Fonksiyonun Amacı
+; handleOnDragEnd fonksiyonu, sürükle-bırak (drag-and-drop) işlemi tamamlandığında çağrılır. Bu fonksiyon, sürüklenen öğenin yeni konumuna göre listeyi günceller.
+
+; 2. Fonksiyonun İçeriği
+; if (!result.destination) return;
+
+; Eğer sürüklenen öğe bir hedefe bırakılmadıysa (result.destination yoksa), fonksiyon işlemi durdurur ve hiçbir şey yapmaz. Bu, sürükleme işleminin tamamlanmadığı durumlarda işlem yapmayı engeller.
+; const items = Array.from(characters);
+
+; characters adlı diziyi (array) alır ve onun bir kopyasını oluşturur. Bu kopya üzerinde işlemler yaparak orijinal diziyi değiştirmeden yeni sıralama işlemini yapar.
+; const [reorderedItem] = items.splice(result.source.index, 1);
+
+; result.source.index ile belirtilen konumdan bir öğe (reorderedItem) çıkarılır. splice metodu, diziden öğe çıkarma ve değiştirme işlevini görür. Çıkarılan öğe reorderedItem değişkenine atanır.
+; items.splice(result.destination.index, 0, reorderedItem);
+
+; reorderedItem adlı öğeyi, result.destination.index konumuna ekler. splice metodu burada, öğeyi belirtilen konumda ekler. Bu işlem, öğenin yeni konumunu belirtir.
+; updateCharacters(items);
+
+; updateCharacters fonksiyonu çağrılarak, güncellenmiş items dizisi yeni karakter listesi olarak ayarlanır. Bu, kullanıcı arayüzünü günceller ve sıralamanın değiştiğini gösterir.
+; Özet
+; Bu fonksiyon, sürüklenen bir öğenin yeni konumunu belirleyip, öğenin yeni pozisyonuna göre diziyi günceller. Kullanıcı bir öğeyi sürükleyip bıraktığında, listenin sıralamasını yeni düzenle günceller ve bu değişiklikleri ekranda gösterir.

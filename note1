@@ -1,0 +1,34 @@
+; 1. <DragDropContext>
+; Bileşenin Amacı: Bu bileşen, react-beautiful-dnd kütüphanesi tarafından sağlanır ve sürükle-bırak işlevselliğini etkinleştirmek için gereklidir. Sürükle-bırak işlemlerini içerecek kod bölümünü sarmalar.
+; Anahtar Noktalar:
+; onDragEnd: Bu bileşen, bir kullanıcı sürükle-bırak işlemine son verdiğinde ne olacağını belirleyen bir işlev gerektirir.
+; 2. <Droppable>
+; Bileşenin Amacı: Droppable bileşeni, sürüklenebilir öğelerin bırakılabileceği bir alanı tanımlar. Bu alan, sürüklenebilir öğeleri içeren bir konteyner olarak işlev görür.
+; Anahtar Noktalar:
+; droppableId="characters": Bu prop, bırakılabilir alan için benzersiz bir kimliktir. Bu kimlik, sürükle-bırak işlemleri sırasında öğelerin nereden nereye sürüklendiğini takip etmek için kullanılır.
+; provided (parametre): Droppable bileşeninin render işlevi tarafından sağlanan bir nesnedir. Bu nesne, bırakılabilir alanın (ul bu durumda) doğru çalışması için uygulanması gereken özellikleri ve yöntemleri içerir.
+; 3. {(provided) => ( ... )}
+; İşlev Açıklaması: Bu, Droppable bileşenine geçirilen bir render işlevidir. provided argümanı, sürükle-bırak etkileşimini yönetmek için kullanılır.
+; Anahtar Elemanlar:
+; provided.droppableProps: Bırakılabilir öğeye (bu durumda <ul>) uygulanması gereken özelliklerdir.
+; provided.innerRef: Bu ref, bırakılabilir öğeye uygulanmalı ve sürükle-bırak sisteminin doğru çalışmasını sağlar.
+; provided.placeholder: Sürükleme sırasında görsel düzenin korunması için kütüphanenin eklediği bir yer tutucudur.
+; 4. <ul className="characters">
+; Elementin Amacı: Bu, karakterlerin listesini içeren standart bir sırasız listedir (<ul>). characters sınıfı büyük ihtimalle stil için kullanılır.
+; Anahtar Noktalar:
+; Bu liste, sürüklenebilir öğelerin her birini temsil eden <li> elemanlarını içerecek.
+; 5. {finalSpaceCharacters.map(({ id, name, thumb }) => { ... })}
+; Açıklama:
+; Bu, finalSpaceCharacters dizisi üzerinde yineleme yapmak için kullanılan bir JavaScript map() işlevi.
+; Her karakter nesnesi için id, name ve thumb özelliklerini çıkarır ve karşılık gelen bir liste öğesi (<li>) döndürür.
+; 6. <li key={id}>
+; Elementin Amacı: Liste öğesi (<li>), listedeki tek bir karakteri temsil eder.
+; Anahtar Noktalar:
+; key={id}: key prop'u React'ta listeyi verimli bir şekilde güncellemek için önemlidir. Her öğeyi benzersiz bir şekilde tanımlar ve React'ın hangi öğelerin değiştiğini, eklendiğini veya kaldırıldığını belirlemesine yardımcı olur.
+; 7. <div className="characters-thumb">
+; Elementin Amacı: Bu div, her bir karakterin küçük resmini (thumbnail) sarmalar. characters-thumb sınıfı, resim konteynerini stilize etmek için kullanılır.
+; 8. <img src={thumb} alt={${name} Thumb} />
+; Elementin Amacı: Bu resim öğesi (<img>), karakterin küçük resmini gösterir.
+; Anahtar Noktalar:
+; src={thumb}: src niteliği, resmin kaynağını belirler; bu, karakter nesnesinin thumb özelliğinden gelir.
+; alt={${name} Thumb}: alt niteliği, resim yüklenemediğinde veya erişilebilirlik açısından gösterilen alternatif metni sağlar. Metin, karakterin name özelliğini kullanarak dinamik olarak ayarlanır.
