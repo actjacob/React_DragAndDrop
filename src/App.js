@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./App.css";
 
@@ -33,6 +33,16 @@ const finalSpaceCharacters = [
 function App() {
   const [characters, updateCharacters] = useState(finalSpaceCharacters);
 
+  // Bileşen yüklendiğinde listeyi localStorage'dan yükle
+  useEffect(() => {
+    const savedCharacters = JSON.parse(localStorage.getItem("charactersOrder"));
+    if (savedCharacters) {
+      updateCharacters(savedCharacters);
+    } else {
+      updateCharacters(finalSpaceCharacters);
+    }
+  }, []);
+
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
@@ -41,6 +51,9 @@ function App() {
     items.splice(result.destination.index, 0, reorderedItem);
 
     updateCharacters(items);
+
+    // Yeni sıralamayı localStorage'a kaydet
+    localStorage.setItem("charactersOrder", JSON.stringify(items));
   }
 
   return (
